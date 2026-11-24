@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Say What Actually Broke — one line of honest error copy.
 
-Writes a single line of software error copy to /output/entry.txt:
-it names the real failure in plain words, tells the user what to do
-next, and carries the joke in a concrete image.
+Writes a single line of software error copy to entry.txt in the
+output directory (/output, or OUTPUT_DIR when set): it names the real
+failure in plain words, tells the user what to do next, and carries
+the joke in a concrete image. Same bytes on every run.
 """
 
 import os
@@ -16,7 +17,7 @@ LINE = (
 
 
 def main() -> None:
-    out_dir = "/output"
+    out_dir = os.environ.get("OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     # Clear only the contents of the output directory, never the
     # directory itself (the grader mounts it read-only as uid 65534).
